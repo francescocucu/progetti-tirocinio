@@ -63,27 +63,27 @@ INSERT INTO libri (id, titolo, id_genere, anno) VALUES
   
   
 
-INSERT INTO autore (nome, cognome, data_nascita, nazionalita) VALUES
-('Dante', 'Alighieri', 1265, 'italiana'),
-('Giovanni', 'Boccaccio', 1313, 'italiana'),
-('Alessandro', 'Manzoni', 1785, 'italiana'),
-('Giacomo', 'Leopardi', 1798, 'italiana'),
-('Luigi', 'Pirandello', 1867, 'italiana'),
-('Elsa', 'Morante', 1912, 'italiana'),
-('Italo', 'Calvino', 1923, 'italiana'),
-('Umberto', 'Eco', 1932, 'italiana'),
-('Miguel', 'de Cervantes', 1547, 'spagnola'),
-('William', 'Shakespeare', 1564, 'inglese'),
-('Jane', 'Austen', 1775, 'inglese'),
-('Charles', 'Dickens', 1812, 'inglese'),
-('Virginia', 'Woolf', 1882, 'inglese'),
-('George', 'Orwell', 1903, 'inglese'),
-('Victor', 'Hugo', 1802, 'francese'),
-('Gustave', 'Flaubert', 1821, 'francese'),
-('Fëdor', 'Dostoevskij', 1821, 'russa'),
-('Lev', 'Tolstoj', 1828, 'russa'),
-('Ernest', 'Hemingway', 1899, 'statunitense'),
-('Gabriel', 'García Márquez', 1927, 'colombiana');
+INSERT INTO autori (nome, cognome, data_nascita, nazionalita) VALUES
+('Dante', 'Alighieri', '1265-05-21', 'italiana'),
+('Giovanni', 'Boccaccio', '1313-06-16', 'italiana'),
+('Alessandro', 'Manzoni', '1785-03-07', 'italiana'),
+('Giacomo', 'Leopardi', '1798-06-29', 'italiana'),
+('Luigi', 'Pirandello', '1867-06-28', 'italiana'),
+('Elsa', 'Morante', '1912-08-18', 'italiana'),
+('Italo', 'Calvino', '1923-10-15', 'italiana'),
+('Umberto', 'Eco', '1932-01-05', 'italiana'),
+('Miguel', 'de Cervantes', '1547-09-29', 'spagnola'),
+('William', 'Shakespeare', '1564-04-23', 'inglese'),
+('Jane', 'Austen', '1775-12-16', 'inglese'),
+('Charles', 'Dickens', '1812-02-07', 'inglese'),
+('Virginia', 'Woolf', '1882-01-25', 'inglese'),
+('George', 'Orwell', '1903-06-25', 'inglese'),
+('Victor', 'Hugo', '1802-02-26', 'francese'),
+('Gustave', 'Flaubert', '1821-12-12', 'francese'),
+('Fëdor', 'Dostoevskij', '1821-11-11', 'russa'),
+('Lev', 'Tolstoj', '1828-09-09', 'russa'),
+('Ernest', 'Hemingway', '1899-07-21', 'statunitense'),
+('Gabriel', 'García Márquez', '1927-03-06', 'colombiana');
 
 INSERT INTO case_editrici (nome) VALUES
 ('Mondadori'),
@@ -100,7 +100,7 @@ INSERT INTO case_editrici (nome) VALUES
 ('Gallimard');
 
 
-INSERT INTO libri_autore (id_libri, id_autore) VALUES
+INSERT INTO libri_autori (id_libri, id_autori) VALUES
 (1, 1),   -- La Divina Commedia → Dante
 (2, 2),   -- Decameron → Boccaccio
 (3, 3),   -- I promessi sposi → Manzoni

@@ -16,30 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `autore`
+-- Table structure for table `autori`
 --
 
-DROP TABLE IF EXISTS `autore`;
+DROP TABLE IF EXISTS `autori`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `autore` (
+CREATE TABLE `autori` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `cognome` varchar(100) NOT NULL,
-  `data_nascita` int DEFAULT NULL,
+  `data_nascita` date DEFAULT NULL,
   `nazionalita` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `autore`
+-- Dumping data for table `autori`
 --
 
-LOCK TABLES `autore` WRITE;
-/*!40000 ALTER TABLE `autore` DISABLE KEYS */;
-INSERT INTO `autore` VALUES (1,'Dante','Alighieri',1265,'italiana'),(2,'Giovanni','Boccaccio',1313,'italiana'),(3,'Alessandro','Manzoni',1785,'italiana'),(4,'Giacomo','Leopardi',1798,'italiana'),(5,'Luigi','Pirandello',1867,'italiana'),(6,'Elsa','Morante',1912,'italiana'),(7,'Italo','Calvino',1923,'italiana'),(8,'Umberto','Eco',1932,'italiana'),(9,'Miguel','de Cervantes',1547,'spagnola'),(10,'William','Shakespeare',1564,'inglese'),(11,'Jane','Austen',1775,'inglese'),(12,'Charles','Dickens',1812,'inglese'),(13,'Virginia','Woolf',1882,'inglese'),(14,'George','Orwell',1903,'inglese'),(15,'Victor','Hugo',1802,'francese'),(16,'Gustave','Flaubert',1821,'francese'),(17,'Fëdor','Dostoevskij',1821,'russa'),(18,'Lev','Tolstoj',1828,'russa'),(19,'Ernest','Hemingway',1899,'statunitense'),(20,'Gabriel','García Márquez',1927,'colombiana');
-/*!40000 ALTER TABLE `autore` ENABLE KEYS */;
+LOCK TABLES `autori` WRITE;
+/*!40000 ALTER TABLE `autori` DISABLE KEYS */;
+INSERT INTO `autori` VALUES (1,'Dante','Alighieri','1265-05-21','italiana'),(2,'Giovanni','Boccaccio','1313-06-16','italiana'),(3,'Alessandro','Manzoni','1785-03-07','italiana'),(4,'Giacomo','Leopardi','1798-06-29','italiana'),(5,'Luigi','Pirandello','1867-06-28','italiana'),(6,'Elsa','Morante','1912-08-18','italiana'),(7,'Italo','Calvino','1923-10-15','italiana'),(8,'Umberto','Eco','1932-01-05','italiana'),(9,'Miguel','de Cervantes','1547-09-29','spagnola'),(10,'William','Shakespeare','1564-04-23','inglese'),(11,'Jane','Austen','1775-12-16','inglese'),(12,'Charles','Dickens','1812-02-07','inglese'),(13,'Virginia','Woolf','1882-01-25','inglese'),(14,'George','Orwell','1903-06-25','inglese'),(15,'Victor','Hugo','1802-02-26','francese'),(16,'Gustave','Flaubert','1821-12-12','francese'),(17,'Fëdor','Dostoevskij','1821-11-11','russa'),(18,'Lev','Tolstoj','1828-09-09','russa'),(19,'Ernest','Hemingway','1899-07-21','statunitense'),(20,'Gabriel','García Márquez','1927-03-06','colombiana');
+/*!40000 ALTER TABLE `autori` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -149,30 +149,30 @@ INSERT INTO `libri` VALUES (1,'La Divina Commedia',1,1321),(2,'Decameron',10,135
 UNLOCK TABLES;
 
 --
--- Table structure for table `libri_autore`
+-- Table structure for table `libri_autori`
 --
 
-DROP TABLE IF EXISTS `libri_autore`;
+DROP TABLE IF EXISTS `libri_autori`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `libri_autore` (
+CREATE TABLE `libri_autori` (
   `id_libri` int DEFAULT NULL,
-  `id_autore` int DEFAULT NULL,
+  `id_autori` int DEFAULT NULL,
   KEY `id_libri` (`id_libri`),
-  KEY `id_autore` (`id_autore`),
-  CONSTRAINT `libri_autore_ibfk_1` FOREIGN KEY (`id_libri`) REFERENCES `libri` (`id`),
-  CONSTRAINT `libri_autore_ibfk_2` FOREIGN KEY (`id_autore`) REFERENCES `autore` (`id`)
+  KEY `id_autori` (`id_autori`),
+  CONSTRAINT `libri_autori_ibfk_1` FOREIGN KEY (`id_libri`) REFERENCES `libri` (`id`),
+  CONSTRAINT `libri_autori_ibfk_2` FOREIGN KEY (`id_autori`) REFERENCES `autori` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `libri_autore`
+-- Dumping data for table `libri_autori`
 --
 
-LOCK TABLES `libri_autore` WRITE;
-/*!40000 ALTER TABLE `libri_autore` DISABLE KEYS */;
-INSERT INTO `libri_autore` VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,5),(7,6),(8,6),(9,7),(10,7),(11,8),(12,8),(13,9),(14,11),(15,12),(16,12),(17,13),(18,14),(19,14),(20,15),(21,16),(22,17),(23,17),(24,18),(25,18),(26,19),(27,20);
-/*!40000 ALTER TABLE `libri_autore` ENABLE KEYS */;
+LOCK TABLES `libri_autori` WRITE;
+/*!40000 ALTER TABLE `libri_autori` DISABLE KEYS */;
+INSERT INTO `libri_autori` VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,5),(7,6),(8,6),(9,7),(10,7),(11,8),(12,8),(13,9),(14,11),(15,12),(16,12),(17,13),(18,14),(19,14),(20,15),(21,16),(22,17),(23,17),(24,18),(25,18),(26,19),(27,20);
+/*!40000 ALTER TABLE `libri_autori` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -184,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-04 21:02:19
+-- Dump completed on 2026-11-05 20:19:02

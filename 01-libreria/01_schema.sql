@@ -17,18 +17,18 @@ id int primary key auto_increment,
 nome varchar (100) not null
 );
 
-create table libri_autore (
+create table libri_autori (
 id_libri int,
 foreign key (id_libri) references libri(id),
-id_autore int,
-foreign key (id_autore) references autore(id)
+id_autori int,
+foreign key (id_autori) references autori(id)
 );
 
-create table autore (
+create table autori (
 id int primary key auto_increment,
 nome varchar (100) not null,
 cognome varchar (100) not null,
-data_nascita int,
+data_nascita date,
 nazionalita varchar (100) 
 );
 

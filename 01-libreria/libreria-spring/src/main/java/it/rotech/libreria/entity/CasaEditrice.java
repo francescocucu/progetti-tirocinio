@@ -1,9 +1,13 @@
 package it.rotech.libreria.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +24,9 @@ nome varchar (100) not null
 
 private Integer id;
 private String nome;
+
+@OneToMany(mappedBy ="casaEditrice") //"casaEditrice" è il nome del campo dentro Copia
+private List <Copia> copie = new ArrayList<>();
 
 public Integer getId() {
     return id;

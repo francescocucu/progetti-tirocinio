@@ -1,10 +1,15 @@
 package it.rotech.libreria.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -33,9 +38,18 @@ foreign key (id_genere) references generi(id)
      Nel database c’è il numero id_genere, mentre in Java tieni l’oggetto intero: -----> private Genere genere.
      Il numero lo nomini solo dentro @JoinColumn, perché Hibernate sappia quale colonna usare.*/
 
-    @ManyToOne 
-    @JoinColumn(name = "id_genere")   
+    @ManyToOne
+    @JoinColumn (name = "id_genere") //name = "come si chiama la fk dentro la tabella libri?"
     private Genere genere;
+
+    //essendo una relazione n-n
+    @ManyToMany 
+    @JoinTable (
+        name = "libri_autori",  // nome della tabella di collegamento 
+        joinColumns = @JoinColumn (name="id_libri"), //FK verso QUESTA entità (Libro)
+        inverseJoinColumns = @JoinColumn(name = "id_autori") // FK verso l'ALTRA entità (Autore)
+          )
+    private Set<Autore> autori = new HashSet<>();
 
     //Getter di Id e getter e setter del resto
 

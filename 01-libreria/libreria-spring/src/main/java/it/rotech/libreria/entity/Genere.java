@@ -1,9 +1,15 @@
 package it.rotech.libreria.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +28,12 @@ nome varchar (100) not null
 private Integer id;
 private String nome;
 
+//sotto: questo serve a Java per comprendere le relazioni tra tabelle, in questo caso 1 a n
+@OneToMany(mappedBy = "genere") //"genere" è il nome del campo dentro Libro"
+private List <Libro> libri = new ArrayList<>();
+      
+   
+
 public Integer getId() {
     return id;
 }
@@ -38,7 +50,8 @@ public Genere() {
 
 //costruttore param
 
-public Genere(String nome) {
+public Genere(Integer id, String nome) {
+    this.id = id;
     this.nome = nome;
 }
 

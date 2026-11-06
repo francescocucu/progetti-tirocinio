@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import it.rotech.libreria.entity.Libro;
 
 public interface LibroRepository extends JpaRepository<Libro, Integer>{
-
+ 
 }

@@ -1,8 +1,5 @@
 package it.rotech.libreria.entity;
 
-import it.rotech.libreria.entity.Libro;
-
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

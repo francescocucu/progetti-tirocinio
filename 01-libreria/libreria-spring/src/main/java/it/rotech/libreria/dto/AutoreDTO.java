@@ -1,0 +1,59 @@
+package it.rotech.libreria.dto;
+
+import java.time.LocalDate;
+
+public class AutoreDTO {
+
+private Integer id;
+private String nome;
+private String cognome;
+private LocalDate dataNascita;
+private String nazionalita;
+
+
+public Integer getId() {
+    return id;
+}
+public void setId(Integer id) {
+    this.id = id;
+}
+public String getNome() {
+    return nome;
+}
+public void setNome(String nome) {
+    this.nome = nome;
+}
+public String getCognome() {
+    return cognome;
+}
+public void setCognome(String cognome) {
+    this.cognome = cognome;
+}
+public LocalDate getDataNascita() {
+    return dataNascita;
+}
+public void setDataNascita(LocalDate dataNascita) {
+    this.dataNascita = dataNascita;
+}
+public String getNazionalita() {
+    return nazionalita;
+}
+public void setNazionalita(String nazionalita) {
+    this.nazionalita = nazionalita;
+}
+
+//costruttore vuoto
+public AutoreDTO() {
+}
+
+//param
+public AutoreDTO(Integer id, String nome, String cognome, LocalDate dataNascita, String nazionalita) {
+    this.id = id;
+    this.nome = nome;
+    this.cognome = cognome;
+    this.dataNascita = dataNascita;
+    this.nazionalita = nazionalita;
+}
+
+
+}

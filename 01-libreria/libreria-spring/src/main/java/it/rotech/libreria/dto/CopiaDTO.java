@@ -12,6 +12,7 @@ public class CopiaDTO {
         return id;
     }
 
+    
     public void setId(Integer id) {
         this.id = id;
     }
@@ -47,10 +48,12 @@ public class CopiaDTO {
 
     //param
     public CopiaDTO(Integer id, Integer numeroCopie, CasaEditriceDTO casaEditrice, LibroDTO libro) {
+        
         this.id = id;
         this.numeroCopie = numeroCopie;
         this.casaEditrice = casaEditrice;
         this.libro = libro;
     }
+
     
 }

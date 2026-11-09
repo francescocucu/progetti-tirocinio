@@ -48,9 +48,8 @@ public Genere() {
 
 //costruttore param
 
-public Genere(Integer id, String nome) {
-    this.id = id;
-    this.nome = nome;
+public Genere(String nome) {
+     this.nome = nome;
 }
 
 

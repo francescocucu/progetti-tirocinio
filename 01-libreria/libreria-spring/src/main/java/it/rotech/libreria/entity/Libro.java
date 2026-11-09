@@ -42,7 +42,9 @@ foreign key (id_genere) references generi(id)
     @JoinColumn (name = "id_genere") //name = "come si chiama la fk dentro la tabella libri?"
     private Genere genere;
 
-    //essendo una relazione n-n
+    /*essendo una relazione n-n le cose si complicano
+    va dichiarato il nome della tabella di collegamento (name), il nome della fk rivolta a questa entità, Libro (joinColumns),
+    e il nome della fk rivolta all'altra entità, Autore (inverseJoinColumns)*/
     @ManyToMany 
     @JoinTable (
         name = "libri_autori",  // nome della tabella di collegamento 

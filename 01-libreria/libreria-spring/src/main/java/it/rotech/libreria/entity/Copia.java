@@ -74,8 +74,7 @@ public class Copia {
     }
 
     // costruttore param
-    public Copia(Integer id, Integer numeroCopie, CasaEditrice casaEditrice, Libro libro) {
-        this.id = id;
+    public Copia(Integer numeroCopie, CasaEditrice casaEditrice, Libro libro) {
         this.numeroCopie = numeroCopie;
         this.casaEditrice = casaEditrice;
         this.libro = libro;

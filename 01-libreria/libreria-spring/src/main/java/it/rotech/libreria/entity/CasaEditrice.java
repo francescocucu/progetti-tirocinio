@@ -25,8 +25,6 @@ nome varchar (100) not null
 private Integer id;
 private String nome;
 
-@OneToMany(mappedBy ="casaEditrice") //"casaEditrice" è il nome del campo dentro Copia
-private List <Copia> copie = new ArrayList<>();
 
 public Integer getId() {
     return id;

@@ -1,17 +1,34 @@
 package it.rotech.libreria.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.rotech.libreria.dto.LibroDTO;
+import it.rotech.libreria.entity.Libro;
 import it.rotech.libreria.repository.LibroRepository;
+import it.rotech.libreria.utility.Mapper;
 
 @Service 
 public class LibroService {
 
-    @Autowired //inietta il Repository nel Service
-    private  LibroRepository libroRepository;
+    private final LibroRepository libroRepository;
+    private final Mapper mapper;
 
-    //aggiungi libro
+    public LibroService (LibroRepository libroRepository, Mapper mapper){
+        this.libroRepository = libroRepository;
+        this.mapper = mapper;
+    }
 
-    public getAll 
+    public List <LibroDTO> findAll(){
+        List <Libro> risultato = libroRepository.findAll();
+        List <LibroDTO> risultatoDTO = new ArrayList<>();
+        for (Libro libro : risultato){
+            risultatoDTO.add(mapper.convertLibroToLibroDTO(libro));
+            }
+        return risultatoDTO;
+        };
+ 
 }

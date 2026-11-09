@@ -38,13 +38,6 @@ private String cognome;
 private LocalDate dataNascita;
 private String nazionalita;
 
-   @ManyToMany 
-    @JoinTable (
-        name = "libri_autori",  // nome della tabella di collegamento 
-        joinColumns =  @JoinColumn(name = "id_autori"), //FK verso QUESTA entità (Autore)
-        inverseJoinColumns = @JoinColumn (name="id_libri") // FK verso l'ALTRA entità (Libro)
-          )
-    private Set<Libro> libri = new HashSet<>();
 
 
 public Integer getId() {

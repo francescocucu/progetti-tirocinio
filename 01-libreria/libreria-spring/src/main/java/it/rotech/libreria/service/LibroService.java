@@ -2,10 +2,9 @@ package it.rotech.libreria.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import it.rotech.libreria.dto.LibroDTO;
 import it.rotech.libreria.entity.Libro;
 import it.rotech.libreria.repository.LibroRepository;
@@ -29,6 +28,22 @@ public class LibroService {
             risultatoDTO.add(mapper.convertLibroToLibroDTO(libro));
             }
         return risultatoDTO;
-        };
+        }
+        
+    public LibroDTO findById (Integer id){
+        Libro risultato = libroRepository.findById(id).orElseThrow(()-> new RuntimeException("Libro con id "+ id + " non trovato"));
+        return (mapper.convertLibroToLibroDTO(risultato));
+    }
+
+    public void addLibro (LibroDTO libroDTO){
+        libroRepository.save((mapper.convertLibroDTOToLibro(libroDTO)));
+               
+    }
+        
+    public void updateLibro (Integer id, LibroDTO libroDTO) {
+        
+        
+    }
+      
  
 }

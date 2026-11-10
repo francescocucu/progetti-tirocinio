@@ -55,6 +55,14 @@ foreign key (id_genere) references generi(id)
 
     //Getter di Id e getter e setter del resto
 
+    public Set<Autore> getAutori() {
+        return autori;
+    }
+
+    public void setAutori(Set<Autore> autori) {
+        this.autori = autori;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -90,10 +98,11 @@ foreign key (id_genere) references generi(id)
 
         //costruttore param
 
-    public Libro(String titolo, Integer anno, Genere genere) {
+    public Libro(String titolo, Integer anno, Genere genere, Set <Autore> autori) {
         this.titolo = titolo;
         this.anno = anno;
         this.genere = genere;
+        this.autori = autori;
     }
 
  

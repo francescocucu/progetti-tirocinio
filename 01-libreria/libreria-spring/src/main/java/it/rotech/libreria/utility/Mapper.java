@@ -7,6 +7,7 @@ import it.rotech.libreria.dto.CasaEditriceDTO;
 import it.rotech.libreria.dto.CopiaDTO;
 import it.rotech.libreria.dto.GenereDTO;
 import it.rotech.libreria.dto.LibroDTO;
+import it.rotech.libreria.dto.LibroForm;
 import it.rotech.libreria.entity.Autore;
 import it.rotech.libreria.entity.CasaEditrice;
 import it.rotech.libreria.entity.Copia;
@@ -82,11 +83,11 @@ public class Mapper {
         return genereDTO;
     }
 
-    public Libro convertLibroDTOToLibro (LibroDTO libroDTO){
+    //Il genere lo aggiunge il service, nel metodo create
+    public Libro convertLibroFormToLibro (LibroForm libroForm){
         Libro libro = new Libro ();
-        libro.setTitolo(libroDTO.getTitolo());
-        libro.setAnno(libroDTO.getAnno());
-        libro.setGenere(convertGenereDTOToGenere(libroDTO.getGenere()));
+        libro.setTitolo(libroForm.getTitolo());
+        libro.setAnno(libroForm.getAnno());
         return libro;
     }
 

@@ -6,4 +6,5 @@ import it.rotech.libreria.entity.Genere;
 
 public interface GenereRepository extends JpaRepository <Genere, Integer>{
 
+    Genere findByNome (String nome);
 }

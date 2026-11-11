@@ -1,8 +1,6 @@
 package it.rotech.libreria.dto;
 
-/**
- * GenereDto
- */
+
 public class GenereDTO {
 
     private Integer id;
@@ -21,12 +19,6 @@ public class GenereDTO {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    // costruttore param
-    public GenereDTO(Integer id, String nome) {
-        this.id = id;
         this.nome = nome;
     }
 

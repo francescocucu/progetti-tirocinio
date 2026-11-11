@@ -36,14 +36,7 @@ public class LibroDTO {
     //costruttore vuoto
     public LibroDTO() {
     }
-    //e pieno
-    public LibroDTO(Integer id, String titolo, Integer anno, GenereDTO genere) {
-        this.id = id;
-        this.titolo = titolo;
-        this.anno = anno;
-        this.genere = genere;
-    }
-      
+       
       
 
 }

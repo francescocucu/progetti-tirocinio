@@ -47,14 +47,5 @@ public void setNazionalita(String nazionalita) {
 public AutoreDTO() {
 }
 
-//param
-public AutoreDTO(Integer id, String nome, String cognome, LocalDate dataNascita, String nazionalita) {
-    this.id = id;
-    this.nome = nome;
-    this.cognome = cognome;
-    this.dataNascita = dataNascita;
-    this.nazionalita = nazionalita;
-}
-
 
 }

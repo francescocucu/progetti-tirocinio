@@ -46,14 +46,5 @@ public class CopiaDTO {
     public CopiaDTO() {
     }
 
-    //param
-    public CopiaDTO(Integer id, Integer numeroCopie, CasaEditriceDTO casaEditrice, LibroDTO libro) {
-        
-        this.id = id;
-        this.numeroCopie = numeroCopie;
-        this.casaEditrice = casaEditrice;
-        this.libro = libro;
-    }
-
-    
+  
 }

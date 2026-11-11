@@ -43,13 +43,13 @@ public class LibroController {
       libroService.addLibro(libroRequest);
    }
 
-   @PutMapping("libri/{id}")
+   @PutMapping("/{id}")
    public void updateLibro(@PathVariable Integer id, @RequestBody LibroForm libroForm) {
       libroService.updateLibro(id, libroForm);
 
    }
 
-   @DeleteMapping("libri/{id}")
+   @DeleteMapping("/{id}")
    public void deleteLibro(@PathVariable Integer id){
       libroService.deleteLibro(id);
    }

@@ -66,7 +66,7 @@ public class Mapper {
         copiaDTO.setId(copia.getId());
         copiaDTO.setNumeroCopie(copia.getNumeroCopie());
         copiaDTO.setCasaEditrice(convCasaEditriceToCasaEditriceDTO(copia.getCasaEditrice()));
-       // copiaDTO.setLibro(convertLibroToLibroDTO(copia.getLibro()));
+        copiaDTO.setLibro(convertLibroToLibroDTO(copia.getLibro()));
         return copiaDTO;
     }
 
@@ -91,7 +91,7 @@ public class Mapper {
         return libro;
     }
 
-    public LibroDTO convertLibroToLibroForm(Libro libro) {
+    public LibroDTO convertLibroToLibroDTO(Libro libro) {
         LibroDTO libroDTO = new LibroDTO();
         libroDTO.setId(libro.getId());
         libroDTO.setTitolo(libro.getTitolo());

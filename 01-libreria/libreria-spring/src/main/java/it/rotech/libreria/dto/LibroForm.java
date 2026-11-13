@@ -7,10 +7,11 @@ public class LibroForm {
 
     private String titolo;
     private Integer anno;
-    private Integer genereId;
-    private List<Integer> listaAutoriID = new ArrayList<>();
+    private String nomeGenere;
+    private List<AutoreForm> listaAutori = new ArrayList<>();
         
     
+   
     public LibroForm() {
     }
 
@@ -29,22 +30,25 @@ public class LibroForm {
         this.anno = anno;
     }
     
-    public Integer getGenereId() {
-        return genereId;
+    public String getNomeGenere() {
+        return nomeGenere;
     }
 
 
-    public void setGenereId(Integer genereId) {
-        this.genereId = genereId;
+    public void setNomeGenere(String nomeGenere) {
+        this.nomeGenere = nomeGenere;
     }
 
-     public List<Integer> getListaAutoriID() {
-        return listaAutoriID;
+    public List<AutoreForm> getListaAutori() {
+        return listaAutori;
     }
 
-    public void setListaAutoriID(List<Integer> listaAutoriID) {
-        this.listaAutoriID = listaAutoriID;
-    }
+    public void setListaAutori(List<AutoreForm> listaAutori) {
+        this.listaAutori = listaAutori;
+    } 
+
+    
+      
 
 
     

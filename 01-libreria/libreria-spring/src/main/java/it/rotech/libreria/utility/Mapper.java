@@ -3,6 +3,7 @@ package it.rotech.libreria.utility;
 import org.springframework.stereotype.Component;
 
 import it.rotech.libreria.dto.AutoreDTO;
+import it.rotech.libreria.dto.AutoreForm;
 import it.rotech.libreria.dto.CasaEditriceDTO;
 import it.rotech.libreria.dto.CopiaDTO;
 import it.rotech.libreria.dto.GenereDTO;
@@ -21,12 +22,12 @@ public class Mapper {
     public Mapper() {
     }
 
-    public Autore covertAutoreDTOToAutore(AutoreDTO autoreDTO) {
+    public Autore convertAutoreFormToAutore(AutoreForm autoreForm) {
         Autore autore = new Autore();
-        autore.setNome(autoreDTO.getNome());
-        autore.setCognome(autoreDTO.getCognome());
-        autore.setDataNascita(autoreDTO.getDataNascita());
-        autore.setNazionalita(autoreDTO.getNazionalita());
+        autore.setNome(autoreForm.getNome());
+        autore.setCognome(autoreForm.getCognome());
+        autore.setDataNascita(autoreForm.getDataDiNascita());
+        autore.setNazionalita(autoreForm.getNazionalita());
         return autore;
     }
 

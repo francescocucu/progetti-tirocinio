@@ -13,14 +13,17 @@ import it.rotech.libreria.dto.LibroForm;
 import it.rotech.libreria.entity.Autore;
 import it.rotech.libreria.entity.Libro;
 import it.rotech.libreria.repository.AutoreRepository;
+import it.rotech.libreria.repository.CopiaRepository;
 import it.rotech.libreria.repository.GenereRepository;
 import it.rotech.libreria.repository.LibroRepository;
 import it.rotech.libreria.utility.Mapper;
+import jakarta.transaction.Transactional;
 
 @Service
 public class LibroService {
 
     private final GenereRepository genereRepository;
+    private final CopiaRepository copiaRepository;
 
     private final LibroRepository libroRepository;
 
@@ -28,7 +31,8 @@ public class LibroService {
     private final Mapper mapper;
 
     public LibroService(LibroRepository libroRepository, AutoreRepository autoreRepository, Mapper mapper,
-            GenereRepository genereRepository) {
+            GenereRepository genereRepository, CopiaRepository copiaRepository) {
+        this.copiaRepository = copiaRepository;
         this.libroRepository = libroRepository;
         this.autoreRepository = autoreRepository;
         this.mapper = mapper;
@@ -51,7 +55,7 @@ public class LibroService {
     }
 
     public void addLibro(LibroForm libroForm) {
-        Libro libro = mapper.convertLibroFormToLibro(libroForm); // creo un nuovo libro con titolo e autore
+        Libro libro = mapper.convertLibroFormToLibro(libroForm); // creo un nuovo libro con titolo e anno
 
         libro.setGenere(genereRepository.findByNomeIgnoreCase(libroForm.getNomeGenere()) // setto il genere, se
                                                                                          // esistente nel DB
@@ -82,7 +86,7 @@ public class LibroService {
 
         libroDalDB.setGenere(genereRepository.findByNomeIgnoreCase(libroForm.getNomeGenere()) // poi aggiona il genere,
                                                                                               // se esistente nel DB
-                .orElseThrow(() -> new RuntimeException("Genere non trovato")));
+                .orElseThrow(() -> new RuntimeException("Genere " + libroForm.getNomeGenere() + " non trovato")));
 
         Set<Autore> autoriDalDB = new HashSet<>(); // creo nuova Lista per ospitare uno o più autori
         for (AutoreForm autoreForm : libroForm.getListaAutori()) { // controllo se esiste già nel DB
@@ -102,11 +106,21 @@ public class LibroService {
 
     }
 
+    @Transactional
     public void deleteLibro(Integer id) {
-        Libro libroDalDB = libroRepository.findById(id)
+        Libro libroDalDB = libroRepository.findById(id) // cerco il libro da bandire
                 .orElseThrow(() -> new RuntimeException("Libro con id " + id + " non trovato"));
-        libroRepository.delete(libroDalDB);
+
+        copiaRepository.deleteLibroById(id); // cancello ogni sua copia
+
+        libroDalDB.getAutori().clear(); // cancello la SUA Lista di autori, manualmente, per prassi
+
+        libroRepository.delete(libroDalDB); // lo elimino
 
     }
 
 }
+
+/*- deleteLibro(): Prima di tutto gestire il caso in cui il libro passato dal Client non esiste.
+ Poi, cancellare tutti i record dalle tabelle che hanno come foreign key l'id del Libro (Libri_Autori, Copie),
+ con il parametro id associato al Libro passato dal Client.*/

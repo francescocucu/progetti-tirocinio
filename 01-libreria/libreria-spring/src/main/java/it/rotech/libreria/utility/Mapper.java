@@ -7,6 +7,7 @@ import it.rotech.libreria.dto.AutoreForm;
 import it.rotech.libreria.dto.CasaEditriceDTO;
 import it.rotech.libreria.dto.CopiaDTO;
 import it.rotech.libreria.dto.GenereDTO;
+import it.rotech.libreria.dto.GenereForm;
 import it.rotech.libreria.dto.LibroDTO;
 import it.rotech.libreria.dto.LibroForm;
 import it.rotech.libreria.entity.Autore;
@@ -71,9 +72,9 @@ public class Mapper {
         return copiaDTO;
     }
 
-    public Genere convertGenereDTOToGenere(GenereDTO genereDTO) {
+    public Genere convertGenereFormToGenere(GenereForm genereForm) {
         Genere genere = new Genere();
-        genere.setNome(genereDTO.getNome());
+        genere.setNome(genereForm.getNome());
         return genere;
     }
 

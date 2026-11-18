@@ -1,5 +1,6 @@
 package it.rotech.libreria.service;
 
+import it.rotech.libreria.repository.LibroRepository;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import it.rotech.libreria.dto.GenereDTO;
 import it.rotech.libreria.dto.GenereForm;
 import it.rotech.libreria.entity.Genere;
+import it.rotech.libreria.entity.Libro;
 import it.rotech.libreria.repository.GenereRepository;
 import it.rotech.libreria.utility.Mapper;
 import jakarta.transaction.Transactional;
@@ -15,12 +17,14 @@ import jakarta.transaction.Transactional;
 @Service
 public class GenereService {
 
+    private final LibroRepository libroRepository;
     private final GenereRepository genereRepository;
     private final Mapper mapper;
 
-    public GenereService(GenereRepository genereRepository, Mapper mapper) {
+    public GenereService(GenereRepository genereRepository, Mapper mapper, LibroRepository libroRepository) {
         this.genereRepository = genereRepository;
         this.mapper = mapper;
+        this.libroRepository = libroRepository;
     }
 
     public List<GenereDTO> findAll() {
@@ -70,10 +74,18 @@ public class GenereService {
      */
 
     @Transactional
-    public void deleteGenere(String nomeGenere) { 
-        Genere genere = genereRepository.findByNomeIgnoreCase(nomeGenere)
-                .orElseThrow(() -> new RuntimeException("Genere '" + nomeGenere + "' non trovato"));
+    public void deleteGenere(Integer id) {
+        Genere genere = genereRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Genere con id '" + id + "' non trovato"));
+
+        List<Libro> risultato = libroRepository.findAll();
+        for (Libro libro : risultato) {
+            if (libro.getGenere().getId().equals(id)) {
+                throw new RuntimeException("nun se po' fa");
+            } 
+        }
+    
                 genereRepository.delete(genere);
 
     }
-}
+}// end class

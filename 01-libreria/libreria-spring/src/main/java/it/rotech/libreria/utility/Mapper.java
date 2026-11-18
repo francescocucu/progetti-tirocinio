@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 import it.rotech.libreria.dto.AutoreDTO;
 import it.rotech.libreria.dto.AutoreForm;
 import it.rotech.libreria.dto.CasaEditriceDTO;
+import it.rotech.libreria.dto.CasaEditriceForm;
 import it.rotech.libreria.dto.CopiaDTO;
+import it.rotech.libreria.dto.CopiaForm;
 import it.rotech.libreria.dto.GenereDTO;
 import it.rotech.libreria.dto.GenereForm;
 import it.rotech.libreria.dto.LibroDTO;
@@ -42,35 +44,39 @@ public class Mapper {
         return autoreDTO;
     }
 
-    public CasaEditrice convertCasaEditriceDTOToCasaEditrice(CasaEditriceDTO casaEditriceDTO) {
+    public CasaEditrice convertCasaEditriceFormToCasaEditrice(CasaEditriceForm casaEditriceForm) {
         CasaEditrice casaEditrice = new CasaEditrice();
-        casaEditrice.setNome(casaEditriceDTO.getNome());
+        casaEditrice.setNome(casaEditriceForm.getNome());
         return casaEditrice;
     }
 
-    public CasaEditriceDTO convCasaEditriceToCasaEditriceDTO(CasaEditrice casaEditrice) {
+    public CasaEditriceDTO convertCasaEditriceToCasaEditriceDTO(CasaEditrice casaEditrice) {
         CasaEditriceDTO casaEditriceDTO = new CasaEditriceDTO();
         casaEditriceDTO.setId(casaEditrice.getId());
         casaEditriceDTO.setNome(casaEditrice.getNome());
         return casaEditriceDTO;
     }
 
-    public Copia convertCopiaDTOToCopia(CopiaDTO copiaDTO) {
-        Copia copia = new Copia();
-        copia.setNumeroCopie(copiaDTO.getNumeroCopie());
-        copia.setCasaEditrice(convertCasaEditriceDTOToCasaEditrice(copiaDTO.getCasaEditrice()));
-        // copia.setLibro(convertLibroForm5ToLibro(copiaDTO.getLibro()));
-        return copia;
-    }
-
-    public CopiaDTO convertCopiaToCopiaDTO(Copia copia) {
-        CopiaDTO copiaDTO = new CopiaDTO();
-        copiaDTO.setId(copia.getId());
-        copiaDTO.setNumeroCopie(copia.getNumeroCopie());
-        copiaDTO.setCasaEditrice(convCasaEditriceToCasaEditriceDTO(copia.getCasaEditrice()));
-        copiaDTO.setLibro(convertLibroToLibroDTO(copia.getLibro()));
-        return copiaDTO;
-    }
+    /*
+     * public Copia convertCopiaFormToCopia(CopiaForm copiaForm) {
+     * Copia copia = new Copia();
+     * copia.setNumeroCopie(copiaForm.getNumeroCopie());
+     * copia.setCasaEditrice(convertCasaEditriceToCasaEditrice(copiaForm.
+     * getCasaEditrice()));
+     * // copia.setLibro(convertLibroForm5ToLibro(copiaDTO.getLibro()));
+     * return copia;
+     * }
+     * 
+     * public CopiaDTO convertCopiaToCopiaDTO(Copia copia) {
+     * CopiaDTO copiaDTO = new CopiaDTO();
+     * copiaDTO.setId(copia.getId());
+     * copiaDTO.setNumeroCopie(copia.getNumeroCopie());
+     * copiaDTO.setCasaEditrice(convCasaEditriceToCasaEditriceDTO(copia.
+     * getCasaEditrice()));
+     * copiaDTO.setLibro(convertLibroToLibroDTO(copia.getLibro()));
+     * return copiaDTO;
+     * }
+     */
 
     public Genere convertGenereFormToGenere(GenereForm genereForm) {
         Genere genere = new Genere();

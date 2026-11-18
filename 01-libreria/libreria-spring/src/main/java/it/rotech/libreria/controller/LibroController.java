@@ -39,8 +39,8 @@ public class LibroController {
 
    // @RequestBody legge l’oggetto dal corpo della richiesta.
    @PostMapping
-   public void addLibro(@RequestBody LibroForm libroRequest) {
-      libroService.addLibro(libroRequest);
+   public void addLibro(@RequestBody LibroForm libroForm) {
+      libroService.addLibro(libroForm);
    }
 
    @PutMapping("/{id}")

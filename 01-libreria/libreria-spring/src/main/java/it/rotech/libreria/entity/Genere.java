@@ -25,10 +25,6 @@ nome varchar (100) not null
 
 private Integer id;
 private String nome;
-
-//sotto: questo serve a Java per comprendere le relazioni tra tabelle, in questo caso 1 a n
-@OneToMany(mappedBy = "genere") //"genere" è il nome del campo dentro Libro"
-private List <Libro> libri = new ArrayList<>();
       
    
 
@@ -51,6 +47,10 @@ public Genere() {
 public Genere(String nome) {
      this.nome = nome;
 }
+public void setId(Integer id) {
+    this.id = id;
+}
+
 
 
 

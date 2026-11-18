@@ -47,11 +47,9 @@ public class CasaEditriceService {
     }
 
     public void addCasaEditrice(CasaEditriceForm casaEditriceForm) {
-        CasaEditrice risultato = casaEditriceRepository.findByNomeIgnoreCase(casaEditriceForm.getNome())
-                .orElseThrow(
-                        () -> new RuntimeException("Casa editrice  '" + casaEditriceForm.getNome() + "' non trovata"));
-        ;
-        if (risultato != null) {
+        boolean risultato = casaEditriceRepository.existsByNomeIgnoreCase(casaEditriceForm.getNome());
+               
+        if (risultato == true) {
             throw new RuntimeException("Casa editrice '" + casaEditriceForm.getNome() + "' già presente");
         }
         CasaEditrice entity = new CasaEditrice(casaEditriceForm.getNome());

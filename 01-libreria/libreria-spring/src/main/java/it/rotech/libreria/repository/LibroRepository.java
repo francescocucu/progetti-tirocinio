@@ -1,7 +1,6 @@
 package it.rotech.libreria.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import it.rotech.libreria.entity.Libro;
 

@@ -111,7 +111,7 @@ public class LibroService {
         Libro libroDalDB = libroRepository.findById(id) // cerco il libro da bandire
                 .orElseThrow(() -> new RuntimeException("Libro con id " + id + " non trovato"));
 
-        copiaRepository.deleteLibroById(id); // cancello ogni sua copia
+        copiaRepository.deleteByLibroId(id); // cancello ogni sua copia
 
         libroDalDB.getAutori().clear(); // cancello la SUA Lista di autori, manualmente, per prassi
 

@@ -6,6 +6,6 @@ import it.rotech.libreria.entity.Copia;
 
 public interface CopiaRepository extends JpaRepository <Copia, Integer>{
 
-    public void deleteLibroById (Integer libroId);
+    public void deleteByLibroId (Integer libroId);
 
 }

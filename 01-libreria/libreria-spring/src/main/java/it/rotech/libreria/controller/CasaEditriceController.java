@@ -26,12 +26,12 @@ public class CasaEditriceController {
     }
 
     @GetMapping 
-    private List<CasaEditriceDTO> findAll (){
+    public List<CasaEditriceDTO> findAll (){
         return casaEditriceService.findAll();
     }
 
     @GetMapping ("/{id}")
-    private CasaEditriceDTO findById (Integer id){
+    public CasaEditriceDTO findById (@PathVariable Integer id){
         return casaEditriceService.findById(id);
     }
 
@@ -41,12 +41,12 @@ public class CasaEditriceController {
     }
 
     @PutMapping ("/{id}")
-    private void updateCasaEditrice (@PathVariable  Integer id, @RequestBody CasaEditriceForm casaEditriceForm){
+    public void updateCasaEditrice (@PathVariable  Integer id, @RequestBody CasaEditriceForm casaEditriceForm){
         casaEditriceService.updateCasaEditrice(id, casaEditriceForm);
     }
 
     @DeleteMapping ("/{id}")
-    private void deleteCasaEditrice (@PathVariable Integer id){
+    public void deleteCasaEditrice (@PathVariable Integer id){
         casaEditriceService.deleteCasaEditrice(id);
     }
 

@@ -6,15 +6,12 @@ import it.rotech.libreria.dto.AutoreDTO;
 import it.rotech.libreria.dto.AutoreForm;
 import it.rotech.libreria.dto.CasaEditriceDTO;
 import it.rotech.libreria.dto.CasaEditriceForm;
-import it.rotech.libreria.dto.CopiaDTO;
-import it.rotech.libreria.dto.CopiaForm;
 import it.rotech.libreria.dto.GenereDTO;
 import it.rotech.libreria.dto.GenereForm;
 import it.rotech.libreria.dto.LibroDTO;
 import it.rotech.libreria.dto.LibroForm;
 import it.rotech.libreria.entity.Autore;
 import it.rotech.libreria.entity.CasaEditrice;
-import it.rotech.libreria.entity.Copia;
 import it.rotech.libreria.entity.Genere;
 import it.rotech.libreria.entity.Libro;
 

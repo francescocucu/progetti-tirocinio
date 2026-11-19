@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import it.rotech.libreria.entity.Autore;
 
 public interface AutoreRepository extends JpaRepository<Autore, Integer> {
-Optional<Autore> findByNomeIgnoreCaseAndCognomeIgnoreCaseAndDataNascita(
-        String nome, String cognome, LocalDate dataDiNascita);
+        Optional<Autore> findByNomeIgnoreCaseAndCognomeIgnoreCaseAndDataNascita(
+                        String nome, String cognome, LocalDate dataDiNascita);
+
+        boolean existsByNomeIgnoreCaseAndCognomeIgnoreCaseAndDataNascita(String nome, String cognome,
+                        LocalDate dataDiNascita);
 }

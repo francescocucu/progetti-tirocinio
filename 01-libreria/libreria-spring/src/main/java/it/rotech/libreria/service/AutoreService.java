@@ -1,16 +1,15 @@
 package it.rotech.libreria.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import it.rotech.libreria.dto.AutoreDTO;
 import it.rotech.libreria.dto.AutoreForm;
 import it.rotech.libreria.entity.Autore;
+import it.rotech.libreria.exception.ConflictException;
+import it.rotech.libreria.exception.NotFoundException;
 import it.rotech.libreria.repository.AutoreRepository;
 import it.rotech.libreria.utility.Mapper;
 
@@ -38,7 +37,7 @@ public class AutoreService {
 
     public AutoreDTO findById(Integer id) {
         Autore risultato = autoreRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Autore con id " + " non trovato"));
+                .orElseThrow(() -> new NotFoundException("Autore con id " + " non trovato"));
 
         return mapper.convertAutoreToAutoreDTO(risultato);
 
@@ -49,7 +48,7 @@ public class AutoreService {
         boolean sePresente = autoreRepository.existsByNomeIgnoreCaseAndCognomeIgnoreCaseAndDataNascita(
                 autoreForm.getNome(), autoreForm.getCognome(), autoreForm.getDataDiNascita());
         if (sePresente == true)
-            throw new RuntimeException("Autore già presentre nel DB");
+            throw new ConflictException("Autore già presentre nel DB");
 
         autoreRepository.save(mapper.convertAutoreFormToAutore(autoreForm));
 
@@ -57,7 +56,7 @@ public class AutoreService {
 
     public void updateAutore(Integer id, AutoreForm autoreForm) {
         Autore autore = autoreRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Autore con id " + id + " non trovato"));
+                .orElseThrow(() -> new NotFoundException("Autore con id " + id + " non trovato"));
 
         autoreRepository.save(mapper.updateAutoreFormToAutore(autore, autoreForm));
 
@@ -65,7 +64,7 @@ public class AutoreService {
 
     public void deleteAutore(Integer id) {
         Autore autore = autoreRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Autore con id " + id + " non trovato"));
+                .orElseThrow(() -> new NotFoundException("Autore con id " + id + " non trovato"));
         autoreRepository.delete(autore);
     }
 

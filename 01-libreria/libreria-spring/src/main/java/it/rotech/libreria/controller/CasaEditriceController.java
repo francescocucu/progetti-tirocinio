@@ -2,6 +2,8 @@ package it.rotech.libreria.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,14 @@ import it.rotech.libreria.dto.CasaEditriceDTO;
 import it.rotech.libreria.dto.CasaEditriceForm;
 import it.rotech.libreria.service.CasaEditriceService;
 
+
+//PRONTUARIO:
+/*Metodo	                   Return
+GET (tutti e per id)	      ResponseEntity.ok(...)
+POST                    	ResponseEntity.status(HttpStatus.CREATED).build()
+PUT                     	ResponseEntity.ok().build()
+DELETE                  	ResponseEntity.noContent().build()*/
+
 @RestController 
 @RequestMapping ("/caseeditrici")
 public class CasaEditriceController {
@@ -26,28 +36,31 @@ public class CasaEditriceController {
     }
 
     @GetMapping 
-    public List<CasaEditriceDTO> findAll (){
-        return casaEditriceService.findAll();
+    public ResponseEntity<List<CasaEditriceDTO>> findAll (){
+        return ResponseEntity.ok(casaEditriceService.findAll()) ;
     }
 
     @GetMapping ("/{id}")
-    public CasaEditriceDTO findById (@PathVariable Integer id){
-        return casaEditriceService.findById(id);
+    public ResponseEntity<CasaEditriceDTO> findById (@PathVariable Integer id){
+        return  ResponseEntity.ok(casaEditriceService.findById(id));
     }
 
     @PostMapping 
-    public void addCasaEditrice (@RequestBody CasaEditriceForm casaEditriceForm){
+    public ResponseEntity<Void> addCasaEditrice (@RequestBody CasaEditriceForm casaEditriceForm){
         casaEditriceService.addCasaEditrice(casaEditriceForm);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping ("/{id}")
-    public void updateCasaEditrice (@PathVariable  Integer id, @RequestBody CasaEditriceForm casaEditriceForm){
+    public ResponseEntity<Void> updateCasaEditrice (@PathVariable  Integer id, @RequestBody CasaEditriceForm casaEditriceForm){
         casaEditriceService.updateCasaEditrice(id, casaEditriceForm);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping ("/{id}")
-    public void deleteCasaEditrice (@PathVariable Integer id){
+    public ResponseEntity<Void> deleteCasaEditrice (@PathVariable Integer id){
         casaEditriceService.deleteCasaEditrice(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

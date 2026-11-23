@@ -10,6 +10,8 @@ import it.rotech.libreria.dto.GenereDTO;
 import it.rotech.libreria.dto.GenereForm;
 import it.rotech.libreria.entity.Genere;
 import it.rotech.libreria.entity.Libro;
+import it.rotech.libreria.exception.ConflictException;
+import it.rotech.libreria.exception.NotFoundException;
 import it.rotech.libreria.repository.GenereRepository;
 import it.rotech.libreria.utility.Mapper;
 import jakarta.transaction.Transactional;
@@ -38,7 +40,7 @@ public class GenereService {
 
     public GenereDTO findById(Integer id) {
         Genere risultato = genereRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Genere con id " + id + " non trovato"));
+                .orElseThrow(() -> new NotFoundException("Genere con id " + id + " non trovato"));
         return mapper.convertGenereToGenereDTO(risultato);
     }
 
@@ -51,7 +53,7 @@ public class GenereService {
     public void updateGenere(Integer id, GenereForm genereForm) {
 
         Genere risultato = genereRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Genere con id " + id + " non trovato"));
+                .orElseThrow(() -> new NotFoundException("Genere con id " + id + " non trovato"));
         risultato.setNome(genereForm.getNome()); // lo fa il mapper ma è più rapido così
         genereRepository.save(risultato);
     }
@@ -76,12 +78,12 @@ public class GenereService {
     @Transactional
     public void deleteGenere(Integer id) {
         Genere genere = genereRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Genere con id '" + id + "' non trovato"));
+                .orElseThrow(() -> new NotFoundException ("Genere con id '" + id + "' non trovato"));
 
         List<Libro> risultato = libroRepository.findAll();
         for (Libro libro : risultato) {
             if (libro.getGenere().getId().equals(id)) {
-                throw new RuntimeException("nun se po' fa");
+                throw new ConflictException("nun se po' fa");
             } 
         }
     

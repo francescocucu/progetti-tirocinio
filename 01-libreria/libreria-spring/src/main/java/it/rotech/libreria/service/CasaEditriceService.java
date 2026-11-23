@@ -9,6 +9,8 @@ import it.rotech.libreria.dto.CasaEditriceDTO;
 import it.rotech.libreria.dto.CasaEditriceForm;
 import it.rotech.libreria.entity.CasaEditrice;
 import it.rotech.libreria.entity.Copia;
+import it.rotech.libreria.exception.ConflictException;
+import it.rotech.libreria.exception.NotFoundException;
 import it.rotech.libreria.repository.CasaEditriceRepository;
 import it.rotech.libreria.repository.CopiaRepository;
 import it.rotech.libreria.utility.Mapper;
@@ -38,7 +40,7 @@ public class CasaEditriceService {
 
     public CasaEditriceDTO findById(Integer id) {
         CasaEditrice risultato = casaEditriceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Casa editrice con id " + id + " non trovata"));
+                .orElseThrow(() -> new NotFoundException ("Casa editrice con id " + id + " non trovata"));
         return mapper.convertCasaEditriceToCasaEditriceDTO(risultato);
     }
 
@@ -46,7 +48,7 @@ public class CasaEditriceService {
         boolean risultato = casaEditriceRepository.existsByNomeIgnoreCase(casaEditriceForm.getNome());
                
         if (risultato == true) {
-            throw new RuntimeException("Casa editrice '" + casaEditriceForm.getNome() + "' già presente");
+            throw new ConflictException("Casa editrice '" + casaEditriceForm.getNome() + "' già presente");
         }
         CasaEditrice entity = new CasaEditrice(casaEditriceForm.getNome());
 
@@ -55,7 +57,7 @@ public class CasaEditriceService {
 
     public void updateCasaEditrice(Integer id, CasaEditriceForm casaEditriceForm) {
         CasaEditrice risultato = casaEditriceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Casa editrice con id " + id + " non trovata"));
+                .orElseThrow(() -> new NotFoundException ("Casa editrice con id " + id + " non trovata"));
 
         // controllo che il nome nuovo non sia già presente
         casaEditriceRepository.findByNomeIgnoreCase(casaEditriceForm.getNome())
@@ -63,7 +65,7 @@ public class CasaEditriceService {
                     if (!casaTrovataDalFindBy.getId().equals(id)) { // mi chiedo se il nome trovato uguale sia
                                                                     // dell'attuale entity che sto aggiornando. Se sì
                                                                     // tutto bene, altrimenti lancio eccezione
-                        throw new RuntimeException("Casa editrice '" + casaEditriceForm.getNome() + "' già presente");
+                        throw new ConflictException("Casa editrice '" + casaEditriceForm.getNome() + "' già presente");
                     }
                 });
         risultato.setNome(casaEditriceForm.getNome());
@@ -73,12 +75,12 @@ public class CasaEditriceService {
 
     public void deleteCasaEditrice(Integer id) {
         CasaEditrice risultato = casaEditriceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Casa editrice con id " + id + " non trovata"));
+                .orElseThrow(() -> new NotFoundException("Casa editrice con id " + id + " non trovata"));
 
         List<Copia> copieTrovate = copiaRepository.findAll();
         for (Copia copia : copieTrovate) {
             if (copia.getCasaEditrice().getId().equals(id)) {
-                throw new RuntimeException(
+                throw new ConflictException(
                         "Attenzione, impossibile cancellare casa editrice: copie collegate");
             }
         }

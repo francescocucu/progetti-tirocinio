@@ -12,6 +12,7 @@ import it.rotech.libreria.dto.LibroDTO;
 import it.rotech.libreria.dto.LibroForm;
 import it.rotech.libreria.entity.Autore;
 import it.rotech.libreria.entity.Libro;
+import it.rotech.libreria.exception.NotFoundException;
 import it.rotech.libreria.repository.AutoreRepository;
 import it.rotech.libreria.repository.CopiaRepository;
 import it.rotech.libreria.repository.GenereRepository;
@@ -50,7 +51,7 @@ public class LibroService {
 
     public LibroDTO findById(Integer id) {
         Libro risultato = libroRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Libro con id " + id + " non trovato"));
+                .orElseThrow(() -> new NotFoundException ("Libro con id " + id + " non trovato"));
         return (mapper.convertLibroToLibroDTO(risultato));
     }
 
@@ -59,7 +60,7 @@ public class LibroService {
 
         libro.setGenere(genereRepository.findByNomeIgnoreCase(libroForm.getNomeGenere()) // setto il genere, se
                                                                                          // esistente nel DB
-                .orElseThrow(() -> new RuntimeException("Genere " + libroForm.getNomeGenere() + " non trovato")));// altrimenti
+                .orElseThrow(() -> new NotFoundException ("Genere " + libroForm.getNomeGenere() + " non trovato")));// altrimenti
                                                                                                                   // ciao
 
         Set<Autore> autoriDalDB = new HashSet<>(); // creo nuova Lista per ospitare uno o più autori
@@ -80,13 +81,13 @@ public class LibroService {
 
     public void updateLibro(Integer id, LibroForm libroForm) {
         Libro libroDalDB = libroRepository.findById(id) // cerco un libro tramite id
-                .orElseThrow(() -> new RuntimeException("Libro con id " + id + " non trovato"));// se non lo trova
+                .orElseThrow(() -> new NotFoundException("Libro con id " + id + " non trovato"));// se non lo trova
                                                                                                 // lancia eccezione
         mapper.updateLibroFromForm(libroDalDB, libroForm);// se lo trova lo aggiorna (titolo e anno)
 
         libroDalDB.setGenere(genereRepository.findByNomeIgnoreCase(libroForm.getNomeGenere()) // poi aggiona il genere,
                                                                                               // se esistente nel DB
-                .orElseThrow(() -> new RuntimeException("Genere " + libroForm.getNomeGenere() + " non trovato")));
+                .orElseThrow(() -> new NotFoundException("Genere " + libroForm.getNomeGenere() + " non trovato")));
 
         Set<Autore> autoriDalDB = new HashSet<>(); // creo nuova Lista per ospitare uno o più autori
         for (AutoreForm autoreForm : libroForm.getListaAutori()) { // controllo se esiste già nel DB
@@ -109,7 +110,7 @@ public class LibroService {
     @Transactional
     public void deleteLibro(Integer id) {
         Libro libroDalDB = libroRepository.findById(id) // cerco il libro da bandire
-                .orElseThrow(() -> new RuntimeException("Libro con id " + id + " non trovato"));
+                .orElseThrow(() -> new NotFoundException("Libro con id " + id + " non trovato"));
 
         copiaRepository.deleteByLibroId(id); // cancello ogni sua copia
 

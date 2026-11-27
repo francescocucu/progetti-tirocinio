@@ -55,9 +55,9 @@ public class CopiaService {
 
     // libro e casa editrice esistono? 
     Libro libro = libroRepository.findById(copiaForm.getLibroId())
-            .orElseThrow(() -> new RuntimeException("Libro con id " + copiaForm.getLibroId() + " non trovato"));
+            .orElseThrow(() -> new NotFoundException("Libro con id " + copiaForm.getLibroId() + " non trovato"));
     CasaEditrice casaEditrice = casaEditriceRepository.findById(copiaForm.getCasaEditriceId())
-            .orElseThrow(() -> new RuntimeException(
+            .orElseThrow(() -> new NotFoundException(
                     "Casa editrice con id " + copiaForm.getCasaEditriceId() + " non trovata"));
 
     // esiste già una riga con questo libro e questa casa editrice?
@@ -80,7 +80,7 @@ public class CopiaService {
 
     public void updateCopia(Integer id, CopiaForm copiaForm) {
         Copia risultato = copiaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("oggetto Copia con id " + id + " non trovato"));
+                .orElseThrow(() -> new NotFoundException("oggetto Copia con id " + id + " non trovato"));
 
         risultato.setNumeroCopie(copiaForm.getNumeroCopie());
 

@@ -57,7 +57,7 @@ public class CopiaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateCopia(@Valid @PathVariable @Min(1) Integer id, @RequestBody CopiaForm copiaForm) {
+    public ResponseEntity<Void> updateCopia(@PathVariable @Min(1) Integer id, @Valid @RequestBody CopiaForm copiaForm) {
         copiaService.updateCopia(id, copiaForm);
         return ResponseEntity.ok().build();
     }

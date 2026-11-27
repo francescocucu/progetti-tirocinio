@@ -56,7 +56,7 @@ public class CasaEditriceController {
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<Void> updateCasaEditrice (@Valid @PathVariable @Min(1) Integer id, @RequestBody CasaEditriceForm casaEditriceForm){
+    public ResponseEntity<Void> updateCasaEditrice (@PathVariable @Min(1) Integer id, @Valid  @RequestBody CasaEditriceForm casaEditriceForm){
         casaEditriceService.updateCasaEditrice(id, casaEditriceForm);
         return ResponseEntity.ok().build();
     }

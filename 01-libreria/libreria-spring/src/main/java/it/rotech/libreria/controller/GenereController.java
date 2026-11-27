@@ -58,7 +58,7 @@ public class GenereController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> updateGenere(@Valid @PathVariable @Min(1) Integer id, @RequestBody GenereForm genereForm) {
+    public ResponseEntity<Void> updateGenere(@PathVariable @Min(1) Integer id,@Valid  @RequestBody GenereForm genereForm) {
         genereService.updateGenere(id, genereForm);
         return ResponseEntity.ok().build();
     }

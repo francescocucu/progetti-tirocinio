@@ -60,7 +60,7 @@ public class LibroController {
    }
 
    @PutMapping("/{id}")
-   public ResponseEntity<Void> updateLibro(@Valid @PathVariable @Min(1) Integer id, @RequestBody LibroForm libroForm) {
+   public ResponseEntity<Void> updateLibro(@PathVariable @Min(1) Integer id,@Valid  @RequestBody LibroForm libroForm) {
       libroService.updateLibro(id, libroForm);
       return ResponseEntity.ok().build();
 

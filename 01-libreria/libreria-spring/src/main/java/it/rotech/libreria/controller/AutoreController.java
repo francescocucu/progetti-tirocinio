@@ -57,7 +57,7 @@ public class AutoreController {
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<Void> updateAutore (@Valid @PathVariable @Min(1) Integer id, @RequestBody  AutoreForm autoreForm){
+    public ResponseEntity<Void> updateAutore (@PathVariable @Min(1) Integer id, @Valid @RequestBody  AutoreForm autoreForm){
         autoreService.updateAutore(id, autoreForm);
         return ResponseEntity.ok().build();
     }

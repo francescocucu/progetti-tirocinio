@@ -45,7 +45,7 @@ public class CopiaService {
 
     public CopiaDTO findById(Integer id) {
         Copia risultato = copiaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("oggetto Copia con id " + id + " non trovato"));
+                .orElseThrow(() -> new NotFoundException("oggetto Copia con id " + id + " non trovato"));
         return mapper.convertCopiaToCopiaDTO(risultato);
     }
 
